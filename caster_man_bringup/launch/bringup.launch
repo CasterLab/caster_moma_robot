@@ -2,16 +2,18 @@
 <launch>
   <arg name="log_type" default="screen"/>
 
-  <!-- robot description -->
+  <!-- Robot description -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find caster_man_description)/urdf/caster_man_xacro.xacro" />
 
-  <node name="j2n6s300_driver" pkg="kinova_driver" type="kinova_arm_driver" output="screen" cwd="node" args="j2n6s300">
+  <!-- Kinova Jaco v2 -->
+  <node name="j2n6s300_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2n6s300">
     <rosparam file="$(find caster_man_bringup)/config/kinova_arm.yaml" command="load" />
     <param name="robot_name" value="j2n6s300" />   
     <param name="robot_type" value="j2n6s300" />
     <remap from="j2n6s300_driver/out/joint_state" to="joint_states"/>
   </node>
 
+  <!-- Realsense -->
   <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
     <arg name="tf_prefix"             value="camera"/>
     <arg name="initial_reset"         value="false"/>
@@ -28,7 +30,8 @@
     <remap from="/image" to="/color/image_raw" />
   </node> -->
 
-  <node pkg="aruco_ros" type="single" name="aruco_single">
+  <!-- Aruco detect (Single marker)-->
+  <node pkg="aruco_ros" type="single" name="aruco_single" output="$(arg log_type)">
     <remap from="/camera_info" to="/color/camera_info" />
     <remap from="/image" to="/color/image_raw" />
     <param name="image_is_rectified" value="True"/>
