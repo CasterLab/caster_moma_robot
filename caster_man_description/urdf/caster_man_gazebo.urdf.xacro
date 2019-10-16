@@ -1,0 +1,47 @@
+<?xml version = "1.0"?>
+<robot name = "caster_kinova_xacro" xmlns:xacro = "http://www.ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <!-- for gazebo -->
+  <link name="world">
+  </link>
+  
+  <link name="caster_kinova_base">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://caster_kinova_description/mesh/kinova_base.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.3 0.3 0.3 1.0" />
+        </material>
+      </visual>
+  </link>
+
+  <link name="root">
+  </link>
+
+  <xacro:include filename = "$(find caster_description)/urdf/caster_xacro.xacro" />
+
+  <joint name="connect_root_and_footprint" type="fixed">
+    <child link="base_footprint" />
+    <parent link="world" />
+    <origin xyz="0 0 0" rpy="0 0 0" />    
+  </joint> 
+
+  <joint name="connect_caster_and_base" type="fixed">
+    <child link="caster_kinova_base" />
+    <parent link="base_link" />
+    <origin xyz="-0.045 0 0.2745" rpy="0 0 0" />    
+  </joint> 
+
+  <joint name="connect_base_and_kinova" type="fixed">
+    <child link="root" />
+    <parent link="caster_kinova_base" />
+    <origin xyz="0 0 0.049" rpy="0 0 ${M_PI/2}" />    
+  </joint>
+
+  <xacro:include filename="$(find kinova_description)/urdf/j2n6s300.xacro"/>
+  <xacro:j2n6s300  base_parent="root"/> 
+
+</robot>

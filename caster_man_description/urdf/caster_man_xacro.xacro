@@ -1,0 +1,61 @@
+<?xml version = "1.0"?>
+<robot name = "caster_kinova_xacro" xmlns:xacro = "http://www.ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  
+  <xacro:include filename="$(find kinova_description)/urdf/j2n6s300.xacro"/>
+  <xacro:include filename = "$(find caster_description)/urdf/caster.urdf.xacro" />
+
+  <caster_robot/>
+
+   <!-- realsense d435 -->
+  <xacro:include filename="$(find caster_man_description)/urdf/realsense_d435.urdf.xacro" />
+
+  <link name="kinova_base">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://caster_man_description/mesh/kinova_base.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.3 0.3 0.3 1.0" />
+        </material>
+      </visual>
+  </link>
+
+  <joint name="connect_caster_and_base" type="fixed">
+    <child link="kinova_base" />
+    <parent link="base_link" />
+    <origin xyz="-0.045 0 0.2745" rpy="0 0 0" />    
+  </joint> 
+
+  <link name="kinova_mount_link" />
+  <joint name="kinova_mount" type="fixed">
+    <child link="kinova_mount_link" />
+    <parent link="kinova_base" />
+    <origin xyz="0 0 0.049" rpy="0 0 ${M_PI/2}" />
+  </joint>
+
+  <xacro:j2n6s300 base_parent="kinova_mount_link"/> 
+
+  <link name="realsense_coupling_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://caster_man_description/mesh/ur3_realsense_coupling.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.20 0.20 0.20 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="realsense_coupling_joint" type="fixed">
+    <origin xyz="0 0 -0.015" rpy="${M_PI/2} ${M_PI/2} ${M_PI/2}" />
+    <parent link="j2n6s300_link_6"/>
+    <child link="realsense_coupling_link"/>
+  </joint>
+
+  <sensor_d435 parent="realsense_coupling_link" prefix="camera">
+    <origin xyz="0.01005 0 0.0725" rpy="0 0 0"/>
+  </sensor_d435>
+
+</robot>
