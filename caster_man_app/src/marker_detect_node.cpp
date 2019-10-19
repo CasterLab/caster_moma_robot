@@ -12,7 +12,9 @@
 #include <tf2_ros/transform_broadcaster.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
-geometry_msgs::TransformStamped transformStamped1, transformStamped2;
+bool receive_data = false;
+
+geometry_msgs::TransformStamped transformStamped1, transformStamped2, transformStamped3;
 
 void MarkerPoseCallback(const aruco_msgs::MarkerArray::ConstPtr& msg) {
   static tf2_ros::TransformBroadcaster br;
@@ -40,14 +42,16 @@ void MarkerPoseCallback(const aruco_msgs::MarkerArray::ConstPtr& msg) {
   transformStamped2.transform.translation.z = 0;
 
   tf2::Quaternion q;
-  q.setRPY(M_PI/2.0, M_PI/2.0, 0.0);
+  q.setRPY(-M_PI/2.0, 0.0, 0.0);
   transformStamped2.transform.rotation.x = q.x();
   transformStamped2.transform.rotation.y = q.y();
   transformStamped2.transform.rotation.z = q.z();
   transformStamped2.transform.rotation.w = q.w();
   // br.sendTransform(transformStamped2);
 
-  ROS_INFO("update Marker pose");
+  receive_data = true;
+
+  // ROS_INFO("update Marker pose");
 }
 
 int main(int argc, char** argv) {
@@ -60,12 +64,18 @@ int main(int argc, char** argv) {
 
   ros::Subscriber marker_pose_sub = nh.subscribe("aruco_marker_publisher/markers", 1000, MarkerPoseCallback);
 
+  ROS_INFO("Wait for first marker...");
+  while(receive_data == false) {
+    ros::WallDuration(1.0).sleep();
+  }
+
+  ROS_INFO("Start object tf publish...");
   tf2_ros::TransformBroadcaster br;
   while(ros::ok()) {
     br.sendTransform(transformStamped1);
     br.sendTransform(transformStamped2);
   }
-
+  ROS_INFO("Stop object tf publish");
   ros::waitForShutdown();
   return 0;
 }
