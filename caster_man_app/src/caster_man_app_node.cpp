@@ -29,9 +29,9 @@ void openGripper(trajectory_msgs::JointTrajectory& posture) {
   /* Set them as open, wide enough for the object to fit. */
   posture.points.resize(1);
   posture.points[0].positions.resize(3);
-  posture.points[0].positions[0] = 0.2;
-  posture.points[0].positions[1] = 0.2;
-  posture.points[0].positions[2] = 0.2;
+  posture.points[0].positions[0] = 0.1;
+  posture.points[0].positions[1] = 0.1;
+  posture.points[0].positions[2] = 0.1;
   posture.points[0].time_from_start = ros::Duration(0.5);
   // END_SUB_TUTORIAL
 }
@@ -47,20 +47,20 @@ void closedGripper(trajectory_msgs::JointTrajectory& posture) {
   /* Set them as closed. */
   posture.points.resize(1);
   posture.points[0].positions.resize(3);
-  posture.points[0].positions[0] = 1.20;
-  posture.points[0].positions[1] = 1.20;
-  posture.points[0].positions[2] = 1.20;
+  posture.points[0].positions[0] = 0.8;
+  posture.points[0].positions[1] = 0.8;
+  posture.points[0].positions[2] = 0.8;
   posture.points[0].time_from_start = ros::Duration(0.5);
   // END_SUB_TUTORIAL
 }
 
 void pick(moveit::planning_interface::MoveGroupInterface& move_group) {
-  tf2_ros::Buffer tfBuffer;
-  tf2_ros::TransformListener tfListener(tfBuffer);
+  // tf2_ros::Buffer tfBuffer;
+  // tf2_ros::TransformListener tfListener(tfBuffer);
 
-  geometry_msgs::TransformStamped transformStamped;
-  tfBuffer.canTransform("base_link", "object", ros::Time(0), ros::Duration(4.0));
-  transformStamped = tfBuffer.lookupTransform("base_link", "object", ros::Time(0));
+  // geometry_msgs::TransformStamped transformStamped;
+  // tfBuffer.canTransform("base_link", "object", ros::Time(0), ros::Duration(4.0));
+  // transformStamped = tfBuffer.lookupTransform("base_link", "object", ros::Time(0));
 
   // BEGIN_SUB_TUTORIAL pick1
   // Create a vector of grasps to be attempted, currently only creating single grasp.
@@ -75,7 +75,7 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group) {
   // of the cube). |br|
   // Therefore, the position for panda_link8 = 5 - (length of cube/2 - distance b/w panda_link8 and palm of eef - some
   // extra padding)
-  grasps[0].grasp_pose.header.frame_id = "j2n6s300_link_6";
+  grasps[0].grasp_pose.header.frame_id = "object";
   // grasps[0].grasp_pose.pose.orientation = transformStamped.transform.rotation;
   // grasps[0].grasp_pose.pose.position.x = transformStamped.transform.translation.x;
   // grasps[0].grasp_pose.pose.position.y = transformStamped.transform.translation.y;
@@ -84,36 +84,36 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group) {
   tf2::Quaternion orientation;
   orientation.setRPY(0, 0, 0);
   grasps[0].grasp_pose.pose.orientation = tf2::toMsg(orientation);
-  grasps[0].grasp_pose.pose.position.x = 0;
-  grasps[0].grasp_pose.pose.position.y = 0;
-  grasps[0].grasp_pose.pose.position.z = -0.18;
+  grasps[0].grasp_pose.pose.position.x = 0.0;
+  grasps[0].grasp_pose.pose.position.y = 0.0;
+  grasps[0].grasp_pose.pose.position.z = 0.0;
 
   // Setting pre-grasp approach
   // ++++++++++++++++++++++++++
   /* Defined with respect to frame_id */
-  grasps[0].pre_grasp_approach.direction.header.frame_id = "j2n6s300_link_6";
+  grasps[0].pre_grasp_approach.direction.header.frame_id = "j2n6s300_end_effector";
   /* Direction is set as positive x axis */
-  grasps[0].pre_grasp_approach.direction.vector.x = 1.0;
-  grasps[0].pre_grasp_approach.min_distance = 0.095;
-  grasps[0].pre_grasp_approach.desired_distance = 0.115;
+  grasps[0].pre_grasp_approach.direction.vector.z = 1.0;
+  grasps[0].pre_grasp_approach.min_distance = 0.16;
+  grasps[0].pre_grasp_approach.desired_distance = 0.18;
 
   // Setting post-grasp retreat
   // ++++++++++++++++++++++++++
   /* Defined with respect to frame_id */
-  grasps[0].post_grasp_retreat.direction.header.frame_id = "j2n6s300_link_6";
+  grasps[0].post_grasp_retreat.direction.header.frame_id = "j2n6s300_end_effector";
   /* Direction is set as positive z axis */
-  grasps[0].post_grasp_retreat.direction.vector.z = 1.0;
-  grasps[0].post_grasp_retreat.min_distance = 0.1;
-  grasps[0].post_grasp_retreat.desired_distance = 0.25;
+  grasps[0].post_grasp_retreat.direction.vector.y = 1.0;
+  grasps[0].post_grasp_retreat.min_distance = 0.08;
+  grasps[0].post_grasp_retreat.desired_distance = 0.10;
 
   // Setting posture of eef before grasp
   // +++++++++++++++++++++++++++++++++++
   openGripper(grasps[0].pre_grasp_posture);
-  // END_SUB_TUTORIAL
+  // // END_SUB_TUTORIAL
 
-  // BEGIN_SUB_TUTORIAL pick2
-  // Setting posture of eef during grasp
-  // +++++++++++++++++++++++++++++++++++
+  // // BEGIN_SUB_TUTORIAL pick2
+  // // Setting posture of eef during grasp
+  // // +++++++++++++++++++++++++++++++++++
   closedGripper(grasps[0].grasp_posture);
   // END_SUB_TUTORIAL
 
@@ -121,7 +121,7 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group) {
   // Set support surface as table1.
   // move_group.setSupportSurfaceName("table1");
   // Call pick to pick up the object using the grasps given
-  move_group.pick("marker_46", grasps);
+  move_group.pick("marker_88", grasps);
   // END_SUB_TUTORIAL
 }
 
@@ -136,31 +136,29 @@ void place(moveit::planning_interface::MoveGroupInterface& group) {
 
   // Setting place location pose
   // +++++++++++++++++++++++++++
-  place_location[0].place_pose.header.frame_id = "root";
+  place_location[0].place_pose.header.frame_id = "j2n6s300_link_base";
   tf2::Quaternion orientation;
-  orientation.setRPY(0, 0, M_PI / 2);
+  orientation.setRPY(M_PI/2, 0, 0);
   place_location[0].place_pose.pose.orientation = tf2::toMsg(orientation);
-
-  /* While placing it is the exact location of the center of the object. */
-  place_location[0].place_pose.pose.position.x = 0;
-  place_location[0].place_pose.pose.position.y = 0.5;
+  place_location[0].place_pose.pose.position.x = 0.6;
+  place_location[0].place_pose.pose.position.y = 0.0;
   place_location[0].place_pose.pose.position.z = 0.5;
 
   // Setting pre-place approach
   // ++++++++++++++++++++++++++
   /* Defined with respect to frame_id */
-  place_location[0].pre_place_approach.direction.header.frame_id = "root";
+  place_location[0].pre_place_approach.direction.header.frame_id = "j2n6s300_end_effector";
   /* Direction is set as negative z axis */
-  place_location[0].pre_place_approach.direction.vector.z = -1.0;
+  place_location[0].pre_place_approach.direction.vector.z = 1.0;
   place_location[0].pre_place_approach.min_distance = 0.095;
   place_location[0].pre_place_approach.desired_distance = 0.115;
 
   // Setting post-grasp retreat
   // ++++++++++++++++++++++++++
   /* Defined with respect to frame_id */
-  place_location[0].post_place_retreat.direction.header.frame_id = "root";
+  place_location[0].post_place_retreat.direction.header.frame_id = "j2n6s300_end_effector";
   /* Direction is set as negative y axis */
-  place_location[0].post_place_retreat.direction.vector.y = -1.0;
+  place_location[0].post_place_retreat.direction.vector.y = 1.0;
   place_location[0].post_place_retreat.min_distance = 0.1;
   place_location[0].post_place_retreat.desired_distance = 0.25;
 
@@ -172,7 +170,7 @@ void place(moveit::planning_interface::MoveGroupInterface& group) {
   // Set support surface as table2.
   // group.setSupportSurfaceName("table2");
   // Call place to place the object using the place locations given.
-  group.place("marker_46", place_location);
+  group.place("marker_88", place_location);
   // END_SUB_TUTORIAL
 }
 
@@ -237,9 +235,9 @@ void addCollisionObjects(moveit::planning_interface::PlanningSceneInterface& pla
   collision_objects[2].primitives.resize(1);
   collision_objects[2].primitives[0].type = collision_objects[1].primitives[0].BOX;
   collision_objects[2].primitives[0].dimensions.resize(3);
-  collision_objects[2].primitives[0].dimensions[0] = 0.02;
-  collision_objects[2].primitives[0].dimensions[1] = 0.02;
-  collision_objects[2].primitives[0].dimensions[2] = 0.2;
+  collision_objects[2].primitives[0].dimensions[0] = 0.2;
+  collision_objects[2].primitives[0].dimensions[1] = 0.12;
+  collision_objects[2].primitives[0].dimensions[2] = 0.02;
 
   /* Define the pose of the object. */
   collision_objects[2].primitive_poses.resize(1);
@@ -294,23 +292,27 @@ void UpdateObject(moveit::planning_interface::PlanningSceneInterface& planning_s
   collision_objects.resize(1);
 
   collision_objects[0].header.frame_id = "object";
-  collision_objects[0].id = "marker_46";
+  collision_objects[0].id = "marker_88";
+
+  // collision_objects[0].header.frame_id = "j2n6s300_link_base";
+  // collision_objects[0].id = "marker_88";
+
 
   /* Define the primitive and its dimensions. */
   collision_objects[0].primitives.resize(1);
   collision_objects[0].primitives[0].type = collision_objects[0].primitives[0].BOX;
   collision_objects[0].primitives[0].dimensions.resize(3);
-  collision_objects[0].primitives[0].dimensions[0] = 0.072;
+  collision_objects[0].primitives[0].dimensions[0] = 0.01;
   collision_objects[0].primitives[0].dimensions[1] = 0.1;
-  collision_objects[0].primitives[0].dimensions[2] = 0.072;
+  collision_objects[0].primitives[0].dimensions[2] = 0.01;
 
   /* Define the pose of the object. */
   collision_objects[0].primitive_poses.resize(1);
   // collision_objects[0].primitive_poses[0] = msg->markers[0].pose.pose;
   // collision_objects[0].primitive_poses[0].position = msg->pose.position;
-  // collision_objects[0].primitive_poses[0].position.x = msg->pose.position.x;
-  // collision_objects[0].primitive_poses[0].position.y = msg->pose.position.y;
-  // collision_objects[0].primitive_poses[0].position.z = msg->pose.position.z;
+  // collision_objects[0].primitive_poses[0].position.x = 0.0;
+  // collision_objects[0].primitive_poses[0].position.y = -0.6;
+  // collision_objects[0].primitive_poses[0].position.z = 0.5;
 
   collision_objects[0].operation = collision_objects[0].ADD;
 
@@ -356,14 +358,14 @@ void MarkerPoseCallback(const aruco_msgs::MarkerArray::ConstPtr& msg, moveit::pl
   collision_objects.resize(1);
 
   collision_objects[0].header.frame_id = "object";
-  collision_objects[0].id = "marker_46";
+  collision_objects[0].id = "marker_88";
 
   /* Define the primitive and its dimensions. */
   collision_objects[0].primitives.resize(1);
   collision_objects[0].primitives[0].type = collision_objects[0].primitives[0].BOX;
   collision_objects[0].primitives[0].dimensions.resize(3);
-  collision_objects[0].primitives[0].dimensions[0] = 0.072;
-  collision_objects[0].primitives[0].dimensions[1] = 0.1;
+  collision_objects[0].primitives[0].dimensions[0] = 0.0541;
+  collision_objects[0].primitives[0].dimensions[1] = 0.072;
   collision_objects[0].primitives[0].dimensions[2] = 0.072;
 
   /* Define the pose of the object. */
@@ -391,24 +393,24 @@ int main(int argc, char** argv) {
   moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
   moveit::planning_interface::MoveGroupInterface arm_group("arm");
   // moveit::planning_interface::MoveGroupInterface gripper_group("gripper");
-  arm_group.setPlanningTime(45.0);
+  // arm_group.setPlanningTime(45.0);
 
   // ros::Subscriber marker_pose_sub = nh.subscribe<aruco_msgs::MarkerArray>("aruco_marker_publisher/markers", 1000, boost::bind(MarkerPoseCallback, _1, boost::ref(planning_scene_interface)));
 
   // addCollisionObjects(planning_scene_interface);
 
   // // Wait a bit for ROS things to initialize
-  ros::WallDuration(1.0).sleep();
+  ros::WallDuration(2.0).sleep();
 
   UpdateObject(planning_scene_interface);
 
-  ros::WallDuration(1.0).sleep();
+  ros::WallDuration(2.0).sleep();
 
   pick(arm_group);
 
-  // ros::WallDuration(1.0).sleep();
+  ros::WallDuration(1.0).sleep();
 
-  // place(arm_group);
+  place(arm_group);
 
   ros::waitForShutdown();
   return 0;
