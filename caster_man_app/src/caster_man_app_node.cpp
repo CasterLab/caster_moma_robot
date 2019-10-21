@@ -47,9 +47,9 @@ void closedGripper(trajectory_msgs::JointTrajectory& posture) {
   /* Set them as closed. */
   posture.points.resize(1);
   posture.points[0].positions.resize(3);
-  posture.points[0].positions[0] = 0.8;
-  posture.points[0].positions[1] = 0.8;
-  posture.points[0].positions[2] = 0.8;
+  posture.points[0].positions[0] = 1.1;
+  posture.points[0].positions[1] = 1.1;
+  posture.points[0].positions[2] = 1.1;
   posture.points[0].time_from_start = ros::Duration(0.5);
   // END_SUB_TUTORIAL
 }
@@ -85,8 +85,8 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group) {
   orientation.setRPY(0, 0, 0);
   grasps[0].grasp_pose.pose.orientation = tf2::toMsg(orientation);
   grasps[0].grasp_pose.pose.position.x = 0.0;
-  grasps[0].grasp_pose.pose.position.y = 0.0;
-  grasps[0].grasp_pose.pose.position.z = 0.0;
+  grasps[0].grasp_pose.pose.position.y = 0.03;
+  grasps[0].grasp_pose.pose.position.z = -0.02;
 
   // Setting pre-grasp approach
   // ++++++++++++++++++++++++++
@@ -102,9 +102,10 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group) {
   /* Defined with respect to frame_id */
   grasps[0].post_grasp_retreat.direction.header.frame_id = "j2n6s300_end_effector";
   /* Direction is set as positive z axis */
-  grasps[0].post_grasp_retreat.direction.vector.y = 1.0;
-  grasps[0].post_grasp_retreat.min_distance = 0.08;
-  grasps[0].post_grasp_retreat.desired_distance = 0.10;
+  grasps[0].post_grasp_retreat.direction.vector.z = -1.0;
+  grasps[0].post_grasp_retreat.direction.vector.y = 0.7;
+  grasps[0].post_grasp_retreat.min_distance = 0.12;
+  grasps[0].post_grasp_retreat.desired_distance = 0.15;
 
   // Setting posture of eef before grasp
   // +++++++++++++++++++++++++++++++++++
@@ -138,29 +139,30 @@ void place(moveit::planning_interface::MoveGroupInterface& group) {
   // +++++++++++++++++++++++++++
   place_location[0].place_pose.header.frame_id = "j2n6s300_link_base";
   tf2::Quaternion orientation;
-  orientation.setRPY(M_PI/2, 0, 0);
+  orientation.setRPY(M_PI/2.0, 0.00, -M_PI/2.0);
   place_location[0].place_pose.pose.orientation = tf2::toMsg(orientation);
-  place_location[0].place_pose.pose.position.x = 0.6;
-  place_location[0].place_pose.pose.position.y = 0.0;
-  place_location[0].place_pose.pose.position.z = 0.5;
+  place_location[0].place_pose.pose.position.x = -0.519f;
+  place_location[0].place_pose.pose.position.y = 0.336f;
+  place_location[0].place_pose.pose.position.z = 0.515f;
 
   // Setting pre-place approach
   // ++++++++++++++++++++++++++
   /* Defined with respect to frame_id */
   place_location[0].pre_place_approach.direction.header.frame_id = "j2n6s300_end_effector";
   /* Direction is set as negative z axis */
-  place_location[0].pre_place_approach.direction.vector.z = 1.0;
-  place_location[0].pre_place_approach.min_distance = 0.095;
-  place_location[0].pre_place_approach.desired_distance = 0.115;
+  place_location[0].pre_place_approach.direction.vector.y = -0.6f;
+  place_location[0].pre_place_approach.direction.vector.z = 1.0f;
+  place_location[0].pre_place_approach.min_distance = 0.08f;
+  place_location[0].pre_place_approach.desired_distance = 0.10f;
 
   // Setting post-grasp retreat
   // ++++++++++++++++++++++++++
   /* Defined with respect to frame_id */
   place_location[0].post_place_retreat.direction.header.frame_id = "j2n6s300_end_effector";
   /* Direction is set as negative y axis */
-  place_location[0].post_place_retreat.direction.vector.y = 1.0;
-  place_location[0].post_place_retreat.min_distance = 0.1;
-  place_location[0].post_place_retreat.desired_distance = 0.25;
+  place_location[0].post_place_retreat.direction.vector.z = -1.0f;
+  place_location[0].post_place_retreat.min_distance = 0.1f;
+  place_location[0].post_place_retreat.desired_distance = 0.25f;
 
   // Setting posture of eef after placing object
   // +++++++++++++++++++++++++++++++++++++++++++
@@ -393,7 +395,7 @@ int main(int argc, char** argv) {
   moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
   moveit::planning_interface::MoveGroupInterface arm_group("arm");
   // moveit::planning_interface::MoveGroupInterface gripper_group("gripper");
-  // arm_group.setPlanningTime(45.0);
+  arm_group.setPlanningTime(45.0);
 
   // ros::Subscriber marker_pose_sub = nh.subscribe<aruco_msgs::MarkerArray>("aruco_marker_publisher/markers", 1000, boost::bind(MarkerPoseCallback, _1, boost::ref(planning_scene_interface)));
 

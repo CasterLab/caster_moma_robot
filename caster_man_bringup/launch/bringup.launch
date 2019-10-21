@@ -3,7 +3,7 @@
   <arg name="log_type" default="screen"/>
 
   <!-- Robot description -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find caster_man_description)/urdf/caster_man_xacro.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro $(find caster_man_description)/urdf/caster_man_xacro.xacro" />
 
   <!-- Kinova Jaco v2 -->
   <node name="j2n6s300_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2n6s300">

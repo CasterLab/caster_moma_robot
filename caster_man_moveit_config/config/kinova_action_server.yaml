@@ -1,0 +1,9 @@
+# joint trajectory action server
+# constraints:
+  # goal: 0.01
+  # goal_time: 1.0
+  # trajectory: 0.05
+  # stopped_velocity_tolerance: 0.02
+
+# gripper command action server
+# gripper_command_goal_constraint: 0.01

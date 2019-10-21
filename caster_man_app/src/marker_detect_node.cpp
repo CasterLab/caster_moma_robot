@@ -37,9 +37,9 @@ void MarkerPoseCallback(const aruco_msgs::MarkerArray::ConstPtr& msg) {
   transformStamped2.header.stamp = ros::Time::now();
   transformStamped2.header.frame_id = "marker";
   transformStamped2.child_frame_id = "object";
-  transformStamped2.transform.translation.x = 0.02;
+  transformStamped2.transform.translation.x = 0.00;
   transformStamped2.transform.translation.y = -0.036;
-  transformStamped2.transform.translation.z = 0;
+  transformStamped2.transform.translation.z = 0.00;
 
   tf2::Quaternion q;
   q.setRPY(M_PI/2.0, M_PI/2.0, 0.0);
