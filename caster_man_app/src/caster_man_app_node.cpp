@@ -1,4 +1,5 @@
 #include <ros/ros.h>
+#include <string>
 
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/Twist.h>
@@ -17,6 +18,15 @@
 
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
+
+#include <caster_man_app/PickGift.h>
+
+int get_new_target;
+
+void SetArmPose(moveit::planning_interface::MoveGroupInterface& move_group, std::vector<double>& joint_value) {
+  move_group.setJointValueTarget(joint_value);
+  move_group.move();
+}
 
 void openGripper(trajectory_msgs::JointTrajectory& posture) {
   posture.joint_names.resize(3);
@@ -76,7 +86,7 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group) {
   move_group.pick("marker_88", grasps);
 }
 
-void place(moveit::planning_interface::MoveGroupInterface& group) {
+void place(moveit::planning_interface::MoveGroupInterface& move_group) {
   std::vector<moveit_msgs::PlaceLocation> place_location;
   place_location.resize(1);
 
@@ -101,7 +111,7 @@ void place(moveit::planning_interface::MoveGroupInterface& group) {
 
   openGripper(place_location[0].post_place_posture);
 
-  group.place("marker_88", place_location);
+  move_group.place("marker_88", place_location);
 }
 
 void MovebaseFeedbackCallback(const move_base_msgs::MoveBaseFeedbackConstPtr& feedback) {
@@ -112,7 +122,7 @@ void MovebaseDoneCallback(const actionlib::SimpleClientGoalState& state, const m
   ROS_INFO_STREAM("Move base done callback");
 }
 
-void MoveToGoal(geometry_msgs::Pose pose, actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> &move_base_client) {
+void MoveToGoal(actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> &move_base_client, geometry_msgs::Pose pose) {
   move_base_msgs::MoveBaseGoal mb_goal;
   mb_goal.target_pose.header.stamp = ros::Time::now();
   mb_goal.target_pose.header.frame_id = "map";
@@ -162,14 +172,21 @@ void GetGoalPose(std::string goal_name, ros::NodeHandle &private_nh, geometry_ms
   pose.orientation.w = orientation_vector[3];
 }
 
+bool PickGiftCB(caster_man_app::PickGift::Request &req, caster_man_app::PickGift::Response &res) {
+  if(get_new_target < 0) {
+    get_new_target = atoi(req.id.c_str());
+    res.result = 0;
+  } else {
+    res.result = -1;
+  }
+
+  ROS_INFO("get request: %d, accepted: %d", get_new_target, res.result);
+  return true;
+}
+
 int main(int argc, char** argv) {
   ros::init(argc, argv, "caster_man_app_node");
-  ros::NodeHandle nh;
-  ros::NodeHandle private_nh("~");
-
-  // set up spinner
-  ros::AsyncSpinner spinner(2);
-  spinner.start();
+  ros::NodeHandle nh, private_nh("~");
 
   // get target pose
   geometry_msgs::Pose pick_pose, place_pose, standby_pose;
@@ -177,12 +194,30 @@ int main(int argc, char** argv) {
   GetGoalPose("place", private_nh, place_pose);
   GetGoalPose("standby", private_nh, standby_pose);
 
+  // get arm standby pose
+  std::vector<double> arm_standby_pose(7);
+  private_nh.getParam("arm_pose/standby", arm_standby_pose);
+
+  // get arm box-pick pose
+  std::vector<std::vector<double>> arm_box_pose(10, std::vector<double>(7));
+  private_nh.getParam("arm_pose/pos_0", arm_box_pose[0]);
+  private_nh.getParam("arm_pose/box_1", arm_box_pose[1]);
+  private_nh.getParam("arm_pose/box_2", arm_box_pose[2]);
+  private_nh.getParam("arm_pose/box_3", arm_box_pose[3]);
+  private_nh.getParam("arm_pose/box_4", arm_box_pose[4]);
+  private_nh.getParam("arm_pose/box_5", arm_box_pose[5]);
+  private_nh.getParam("arm_pose/box_6", arm_box_pose[6]);
+
+  // set up spinner
+  ros::AsyncSpinner spinner(4);
+  spinner.start();
+
   ros::WallDuration(1.0).sleep();
   moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
   moveit::planning_interface::MoveGroupInterface arm_group("arm");
   // arm_group.setPlanningTime(45.0);
 
-  actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> move_base_client("move_base", true);
+  // actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> move_base_client("move_base", true);
 
   // ros::Subscriber marker_pose_sub = nh.subscribe<aruco_msgs::MarkerArray>("aruco_marker_publisher/markers", 1000, boost::bind(MarkerPoseCallback, _1, boost::ref(planning_scene_interface)));
 
@@ -190,19 +225,30 @@ int main(int argc, char** argv) {
   ros::WallDuration(2.0).sleep();
 
   // move to standby goal
-  MoveToGoal(standby_pose, move_base_client);
+  ROS_INFO("Moveto standby goal");
+  // MoveToGoal(move_base_client, standby_pose);
 
+  // set arm to standby pose
+  ROS_INFO("Set arm to standby pose");
+  SetArmPose(arm_group, arm_standby_pose);
+
+  ROS_INFO("Start service...");
+  ros::ServiceServer pickup_service = nh.advertiseService("pick_gift", PickGiftCB);
+
+  get_new_target = -1;
   while(ros::ok()) {
-    if(get_new_target == false) {
+    if(get_new_target < 1 || get_new_target > 6) {
       ros::WallDuration(1.0).sleep();
       continue;
     }
 
+    ROS_INFO("Get new target");
+
     // move to pick pose
-    MoveToGoal(pick_pose, move_base_client);
+    // MoveToGoal(move_base_client, pick_pose);
 
     // set arm to target box watch pose
-    SetArmPose(target_box_watch_pose[target_box]);
+    SetArmPose(arm_group, arm_box_pose[get_new_target]);
 
     // UpdateObject(planning_scene_interface)
 
@@ -212,29 +258,25 @@ int main(int argc, char** argv) {
     ros::WallDuration(1.0).sleep();
 
     // move to place pose
-    MoveToGoal(place_pose, move_base_client);
+    // MoveToGoal(move_base_client, place_pose);
 
     // place box on table
     // place(arm_group);
 
     // set arm to home pose
-    SetArmPose(arm_home_pose);
+    ROS_INFO("Set arm to home pose");
+    SetArmPose(arm_group, arm_standby_pose);
 
     ros::WallDuration(1.0).sleep();
 
     // back to standby pose
-    MoveToGoal(standby_pose, move_base_client);
+    // MoveToGoal(move_base_client, standby_pose);
+
+    // reset flag
+    get_new_target = -1;
+
+    ROS_INFO("All finish");
   }
-
-  // UpdateObject(planning_scene_interface);
-
-  // ros::WallDuration(2.0).sleep();
-
-  // pick(arm_group);
-
-  // ros::WallDuration(1.0).sleep();
-
-  // place(arm_group);
 
   ros::waitForShutdown();
   return 0;
