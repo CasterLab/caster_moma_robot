@@ -1,0 +1,9 @@
+map_frame: map
+odom_frame: odom
+base_frame: base_footprint
+
+target_goal:
+  pick: {pose: [0.1, 2.0, 3.0], orientation: [0.1, 12.0, 2.0, 33.0]}
+  place: {pose: [0.0, 0.0, 0.0], orientation: [0.0, 0.0, 0.0, 0.0]}
+  standby: {pose: [0.0, 0.0, 0.0], orientation: [0.0, 0.0, 0.0, 0.0]}
+

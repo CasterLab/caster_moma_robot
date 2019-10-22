@@ -6,11 +6,11 @@
   <param name="robot_description" command="$(find xacro)/xacro $(find caster_man_description)/urdf/caster_man_xacro.xacro" />
 
   <!-- Kinova Jaco v2 -->
-  <node name="j2n6s300_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2n6s300">
+  <node name="j2s7s300_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2s7s300">
     <rosparam file="$(find caster_man_bringup)/config/kinova_arm.yaml" command="load" />
-    <param name="robot_name" value="j2n6s300" />   
-    <param name="robot_type" value="j2n6s300" />
-    <remap from="j2n6s300_driver/out/joint_state" to="joint_states"/>
+    <param name="robot_name" value="j2s7s300" />   
+    <param name="robot_type" value="j2s7s300" />
+    <remap from="j2s7s300_driver/out/joint_state" to="joint_states"/>
   </node>
 
   <!-- Realsense -->
