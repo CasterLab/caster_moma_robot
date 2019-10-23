@@ -1,6 +1,6 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 84
+    Help Height: 70
     Name: Displays
     Property Tree Widget:
       Expanded:
@@ -8,10 +8,8 @@ Panels:
         - /MotionPlanning1/Planning Request1
         - /MotionPlanning1/Planned Path1
         - /DepthCloud1/Auto Size1
-        - /TF1
-        - /TF1/Frames1
       Splitter Ratio: 0.7425600290298462
-    Tree Height: 105
+    Tree Height: 70
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -78,6 +76,10 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
+          arm_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           base_footprint:
             Alpha: 1
             Show Axes: false
@@ -128,6 +130,24 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+          caster_body_arm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          caster_body_head_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          caster_body_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          caster_body_part_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           drive_wheel_left_link:
             Alpha: 1
             Show Axes: false
@@ -142,84 +162,80 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          j2n6s300_end_effector:
+          j2s7s300_end_effector:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          j2n6s300_link_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2n6s300_link_2:
+          j2s7s300_link_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_3:
+          j2s7s300_link_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_4:
+          j2s7s300_link_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_5:
+          j2s7s300_link_4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_6:
+          j2s7s300_link_5:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_base:
+          j2s7s300_link_6:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_1:
+          j2s7s300_link_7:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_2:
+          j2s7s300_link_base:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_3:
+          j2s7s300_link_finger_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_tip_1:
+          j2s7s300_link_finger_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_tip_2:
+          j2s7s300_link_finger_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_tip_3:
+          j2s7s300_link_finger_tip_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          kinova_base:
+          j2s7s300_link_finger_tip_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          kinova_mount_link:
+          j2s7s300_link_finger_tip_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+            Value: true
           laser_link:
             Alpha: 1
             Show Axes: false
@@ -273,7 +289,7 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-        Loop Animation: true
+        Loop Animation: false
         Robot Alpha: 0.5
         Robot Color: 150; 50; 150
         Show Robot Collision: false
@@ -318,6 +334,10 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
+          arm_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           base_footprint:
             Alpha: 1
             Show Axes: false
@@ -368,6 +388,24 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+          caster_body_arm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          caster_body_head_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          caster_body_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          caster_body_part_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           drive_wheel_left_link:
             Alpha: 1
             Show Axes: false
@@ -382,84 +420,80 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          j2n6s300_end_effector:
+          j2s7s300_end_effector:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          j2n6s300_link_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2n6s300_link_2:
+          j2s7s300_link_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_3:
+          j2s7s300_link_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_4:
+          j2s7s300_link_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_5:
+          j2s7s300_link_4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_6:
+          j2s7s300_link_5:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_base:
+          j2s7s300_link_6:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_1:
+          j2s7s300_link_7:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_2:
+          j2s7s300_link_base:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_3:
+          j2s7s300_link_finger_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_tip_1:
+          j2s7s300_link_finger_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_tip_2:
+          j2s7s300_link_finger_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          j2n6s300_link_finger_tip_3:
+          j2s7s300_link_finger_tip_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          kinova_base:
+          j2s7s300_link_finger_tip_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          kinova_mount_link:
+          j2s7s300_link_finger_tip_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+            Value: true
           laser_link:
             Alpha: 1
             Show Axes: false
@@ -518,6 +552,18 @@ Visualization Manager:
         Show Robot Visual: true
       Value: true
       Velocity_Scaling_Factor: 1
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /aruco_marker_publisher/result
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
     - Alpha: 1
       Auto Size:
         Auto Size Factor: 1
@@ -556,234 +602,267 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /aruco_single/marker
-      Name: Marker
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: true
     - Class: rviz/Axes
       Enabled: true
       Length: 0.10000000149011612
-      Name: object
+      Name: Axes
       Radius: 0.009999999776482582
       Reference Frame: object
       Value: true
-    - Class: rviz/Axes
-      Enabled: true
-      Length: 0.10000000149011612
-      Name: gripper
-      Radius: 0.009999999776482582
-      Reference Frame: j2n6s300_end_effector
-      Value: true
-    - Class: rviz/Image
-      Enabled: true
-      Image Topic: /aruco_marker_publisher/result
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Unreliable: false
-      Value: true
-    - Class: rviz/TF
-      Enabled: true
-      Frame Timeout: 15
-      Frames:
-        All Enabled: false
-        base_footprint:
-          Value: false
-        base_link:
-          Value: false
-        camera_accel_frame:
-          Value: false
-        camera_accel_optical_frame:
-          Value: false
-        camera_aligned_depth_to_color_frame:
-          Value: false
-        camera_aligned_depth_to_infra1_frame:
-          Value: false
-        camera_bottom_screw_frame:
-          Value: false
-        camera_color_frame:
-          Value: false
-        camera_color_optical_frame:
-          Value: false
-        camera_depth_frame:
-          Value: false
-        camera_depth_optical_frame:
-          Value: false
-        camera_gyro_frame:
-          Value: false
-        camera_gyro_optical_frame:
-          Value: false
-        camera_infra1_frame:
-          Value: false
-        camera_infra1_optical_frame:
-          Value: false
-        camera_infra2_frame:
-          Value: false
-        camera_infra2_optical_frame:
-          Value: false
-        camera_left_ir_frame:
-          Value: false
-        camera_left_ir_optical_frame:
-          Value: false
-        camera_link:
-          Value: false
-        camera_right_ir_frame:
-          Value: false
-        camera_right_ir_optical_frame:
-          Value: false
-        imu_link:
-          Value: false
-        j2n6s300_end_effector:
-          Value: false
-        j2n6s300_link_1:
-          Value: false
-        j2n6s300_link_2:
-          Value: false
-        j2n6s300_link_3:
-          Value: false
-        j2n6s300_link_4:
-          Value: false
-        j2n6s300_link_5:
-          Value: false
-        j2n6s300_link_6:
-          Value: false
-        j2n6s300_link_base:
-          Value: true
-        j2n6s300_link_finger_1:
-          Value: false
-        j2n6s300_link_finger_2:
-          Value: false
-        j2n6s300_link_finger_3:
-          Value: false
-        j2n6s300_link_finger_tip_1:
-          Value: false
-        j2n6s300_link_finger_tip_2:
-          Value: false
-        j2n6s300_link_finger_tip_3:
-          Value: false
-        kinova_base:
-          Value: false
-        kinova_mount_link:
-          Value: false
-        laser_link:
-          Value: false
-        laser_link2:
-          Value: false
-        marker:
-          Value: false
-        object:
-          Value: false
-        realsense_coupling_link:
-          Value: false
-        support_wheel_front_left_link:
-          Value: false
-        support_wheel_front_right_link:
-          Value: false
-        support_wheel_rear_left_link:
-          Value: false
-        support_wheel_rear_right_link:
-          Value: false
-        ultrasonic_front_left_link:
-          Value: false
-        ultrasonic_front_right_link:
-          Value: false
-        ultrasonic_rear_left_link:
-          Value: false
-        ultrasonic_rear_right_link:
-          Value: false
-      Marker Scale: 0.5
-      Name: TF
-      Show Arrows: true
-      Show Axes: true
-      Show Names: true
-      Tree:
-        base_footprint:
+    - Class: moveit_rviz_plugin/PlanningScene
+      Enabled: false
+      Move Group Namespace: ""
+      Name: PlanningScene
+      Planning Scene Topic: move_group/monitored_planning_scene
+      Robot Description: robot_description
+      Scene Geometry:
+        Scene Alpha: 0.8999999761581421
+        Scene Color: 50; 230; 50
+        Scene Display Time: 0.20000000298023224
+        Show Scene Geometry: true
+        Voxel Coloring: Z-Axis
+        Voxel Rendering: Occupied Voxels
+      Scene Robot:
+        Attached Body Color: 150; 50; 150
+        Links:
+          All Links Enabled: true
+          Expand Joint Details: false
+          Expand Link Details: false
+          Expand Tree: false
+          Link Tree Style: Links in Alphabetic Order
+          arm_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          base_footprint:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           base_link:
-            imu_link:
-              {}
-            kinova_base:
-              kinova_mount_link:
-                j2n6s300_link_base:
-                  j2n6s300_link_1:
-                    j2n6s300_link_2:
-                      j2n6s300_link_3:
-                        j2n6s300_link_4:
-                          j2n6s300_link_5:
-                            j2n6s300_link_6:
-                              j2n6s300_end_effector:
-                                {}
-                              j2n6s300_link_finger_1:
-                                j2n6s300_link_finger_tip_1:
-                                  {}
-                              j2n6s300_link_finger_2:
-                                j2n6s300_link_finger_tip_2:
-                                  {}
-                              j2n6s300_link_finger_3:
-                                j2n6s300_link_finger_tip_3:
-                                  {}
-                              realsense_coupling_link:
-                                camera_bottom_screw_frame:
-                                  camera_link:
-                                    camera_accel_frame:
-                                      camera_accel_optical_frame:
-                                        {}
-                                    camera_aligned_depth_to_color_frame:
-                                      camera_color_optical_frame:
-                                        marker:
-                                          object:
-                                            {}
-                                    camera_aligned_depth_to_infra1_frame:
-                                      camera_infra1_optical_frame:
-                                        {}
-                                    camera_color_frame:
-                                      {}
-                                    camera_depth_frame:
-                                      camera_depth_optical_frame:
-                                        {}
-                                      camera_left_ir_frame:
-                                        camera_left_ir_optical_frame:
-                                          {}
-                                      camera_right_ir_frame:
-                                        camera_right_ir_optical_frame:
-                                          {}
-                                    camera_gyro_frame:
-                                      camera_gyro_optical_frame:
-                                        {}
-                                    camera_infra1_frame:
-                                      {}
-                                    camera_infra2_frame:
-                                      camera_infra2_optical_frame:
-                                        {}
-            laser_link:
-              {}
-            laser_link2:
-              {}
-            support_wheel_front_left_link:
-              {}
-            support_wheel_front_right_link:
-              {}
-            support_wheel_rear_left_link:
-              {}
-            support_wheel_rear_right_link:
-              {}
-            ultrasonic_front_left_link:
-              {}
-            ultrasonic_front_right_link:
-              {}
-            ultrasonic_rear_left_link:
-              {}
-            ultrasonic_rear_right_link:
-              {}
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          camera_bottom_screw_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          camera_color_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          camera_color_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          camera_depth_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          camera_depth_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          camera_left_ir_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          camera_left_ir_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          camera_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          camera_right_ir_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          camera_right_ir_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          caster_body_arm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          caster_body_head_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          caster_body_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          caster_body_part_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          drive_wheel_left_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          drive_wheel_right_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          imu_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          j2s7s300_end_effector:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          j2s7s300_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_4:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_5:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_7:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_base:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_finger_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_finger_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_finger_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_finger_tip_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_finger_tip_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          j2s7s300_link_finger_tip_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          laser_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          laser_link2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          realsense_coupling_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          support_wheel_front_left_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          support_wheel_front_right_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          support_wheel_rear_left_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          support_wheel_rear_right_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          ultrasonic_front_left_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          ultrasonic_front_right_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          ultrasonic_rear_left_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          ultrasonic_rear_right_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+        Robot Alpha: 1
+        Show Robot Collision: false
+        Show Robot Visual: true
+      Value: false
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: false
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
       Update Interval: 0
-      Value: true
+      Value: false
+      Visual Enabled: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -800,25 +879,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 2.3157801628112793
+      Distance: 2.3204896450042725
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.4671686291694641
-        Y: -0.4848026633262634
-        Z: 1.5781927231728332e-7
-      Focal Shape Fixed Size: false
+        X: 0.45404744148254395
+        Y: 0.07389658689498901
+        Z: 4.6193656544346595e-7
+      Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8403983116149902
+      Pitch: 0.17479726672172546
       Target Frame: base_footprint
       Value: XYOrbit (rviz)
-      Yaw: 2.7653987407684326
+      Yaw: 1.5231351852416992
     Saved: ~
 Window Geometry:
   Displays:
@@ -827,16 +906,16 @@ Window Geometry:
   Help:
     collapsed: false
   Hide Left Dock: false
-  Hide Right Dock: true
+  Hide Right Dock: false
   Image:
     collapsed: false
   MotionPlanning:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000200000000000002ad000003a7fc0200000007fb000000100044006900730070006c006100790073010000003d000000fa000000c900fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000013d000002000000019b00fffffffb0000000a0049006d0061006700650100000343000000a10000001600ffffff0000000100000158000003a7fc0200000001fb0000000a00560069006500770073000000003d000003a7000000a400ffffff0000048a000003a700000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002a2000003a7fc0200000008fb000000100044006900730070006c006100790073010000003d000000c9000000c900fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a400fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000010c000001a60000019b00fffffffb0000000a0049006d00610067006501000002b80000012c0000001600ffffff00000495000003a700000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
-    collapsed: true
+    collapsed: false
   Width: 1853
   X: 67
   Y: 27

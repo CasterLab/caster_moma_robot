@@ -4,6 +4,23 @@
 
   <!-- Robot description -->
   <param name="robot_description" command="$(find xacro)/xacro $(find caster_man_description)/urdf/caster_man_xacro.xacro" />
+  <!-- <param name="caster/robot_description" command="$(find xacro)/xacro $(find caster_man_description)/urdf/caster_man_xacro.xacro" /> -->
+
+  <!-- caster -->
+  <include file="$(find caster_base)/launch/base.launch">
+    <arg name="log_type" value="$(arg log_type)"/>
+  </include>
+
+  <!-- caster_body -->
+  <!-- <node pkg="caster_body_driver" type="caster_body_driver_node" name="caster_body_driver_node" output="$(arg log_type)">
+    <param name="baudrate" type="int" value="115200" />
+    <param name="port" type="string" value="/dev/ttyUSB0" />
+    <param name="joint_name" type="string" value="caster_body_connected_joint" />
+  </node> -->
+
+<!--   <rosparam command="load" file="$(find caster_body_driver)/config/ros_control.yaml" />
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="caster_body_joint_publisher caster_body_controller" output="$(arg log_type)" /> -->
 
   <!-- Kinova Jaco v2 -->
   <node name="j2s7s300_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2s7s300">
@@ -44,7 +61,12 @@
     <param name="corner_refinement"  value="LINES" />
   </node> -->
 
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="$(arg log_type)">
+    <!-- ros controller -->
+<!--   <rosparam command="load" file="$(find caster_man_bringup)/config/ros_control.yaml" />
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="caster_joint_publisher caster_velocity_controller" output="$(arg log_type)" /> -->
+
+<!--   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="$(arg log_type)">
     <param name="publish_frequency" type="double" value="30" />
-  </node>
+  </node> -->
 </launch>
