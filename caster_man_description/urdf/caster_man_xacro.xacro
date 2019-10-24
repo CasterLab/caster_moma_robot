@@ -34,7 +34,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://caster_man_description/mesh/ur3_realsense_coupling.stl" />
+        <mesh filename="package://caster_man_description/mesh/kinova_realsense_coupling.stl" />
       </geometry>
       <material name="">
         <color rgba="0.20 0.20 0.20 1" />
@@ -42,13 +42,13 @@
     </visual>
   </link>
   <joint name="realsense_coupling_joint" type="fixed">
-    <origin xyz="0 0 -0.015" rpy="${M_PI/2} ${M_PI/2} ${M_PI/2}" />
+    <origin xyz="0 0 0.007" rpy="0 0 0" />
     <parent link="j2s7s300_link_7"/>
     <child link="realsense_coupling_link"/>
   </joint>
 
   <sensor_d435 parent="realsense_coupling_link" prefix="camera">
-    <origin xyz="0.01005 0 0.0725" rpy="0 0 0"/>
+    <origin xyz="0.0875 0 -0.01515" rpy="0 ${M_PI/2} 0"/>
   </sensor_d435>
 
   <!-- pan tilt -->

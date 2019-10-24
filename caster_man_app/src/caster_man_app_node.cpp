@@ -251,7 +251,7 @@ int main(int argc, char** argv) {
 
     // set arm to target box watch pose
     SetArmPose(arm_group, arm_box_pose[get_new_target]);
-
+/*
     ROS_INFO("Update object");
     // UpdateObject(planning_scene_interface);
 
@@ -307,7 +307,7 @@ int main(int argc, char** argv) {
     gripper_pose[2] = 0.02;
     gripper_group.setJointValueTarget(gripper_pose);
     gripper_group.move();
-
+*/
     // set arm to home pose
     ROS_INFO("Set arm to home pose");
     SetArmPose(arm_group, arm_standby_pose);
