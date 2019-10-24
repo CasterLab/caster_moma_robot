@@ -1,6 +1,9 @@
 #include <ros/ros.h>
 #include <string>
 
+#include <std_msgs/Float64.h>
+#include <sensor_msgs/JointState.h>
+
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -21,6 +24,7 @@
 
 #include <caster_man_app/PickGift.h>
 
+double body_height;
 int get_new_target;
 
 void SetArmPose(moveit::planning_interface::MoveGroupInterface& move_group, std::vector<double>& joint_value) {
@@ -181,6 +185,34 @@ bool PickGiftCB(caster_man_app::PickGift::Request &req, caster_man_app::PickGift
   return true;
 }
 
+void JointStatesCB(const sensor_msgs::JointState::ConstPtr& msg) {
+  for(uint8_t i=0; i<msg->name.size(); i++) {
+    if(msg->name[i] == "caster_body_connected_joint") {
+      body_height = msg->position[i];
+      // ROS_INFO("Get height %lf", body_height);
+      break;
+    }
+  }
+}
+
+bool SetHeight(ros::Publisher &publisher, double height) {
+  if(height < 0.0) {
+    height = 0;
+  } else if (height > 0.35) {
+    height = 0.35;
+  }
+
+  ROS_INFO("%lf, %lf", height, body_height);
+
+  std_msgs::Float64 msg;
+  msg.data = height;
+  publisher.publish(msg);
+
+  while(body_height != height) {
+    ros::WallDuration(0.2).sleep();
+  }
+}
+
 int main(int argc, char** argv) {
   ros::init(argc, argv, "caster_man_app_node");
   ros::NodeHandle nh, private_nh("~");
@@ -218,9 +250,14 @@ int main(int argc, char** argv) {
   // actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> move_base_client("move_base", true);
 
   // ros::Subscriber marker_pose_sub = nh.subscribe<aruco_msgs::MarkerArray>("aruco_marker_publisher/markers", 1000, boost::bind(MarkerPoseCallback, _1, boost::ref(planning_scene_interface)));
+  ros::Subscriber joint_states_sub = nh.subscribe("joint_states", 1000, JointStatesCB);
+  ros::Publisher body_pub = nh.advertise<std_msgs::Float64>("caster/body_controller/command", 1000);
 
   // // Wait a bit for ROS things to initialize
   ros::WallDuration(2.0).sleep();
+
+  ROS_INFO("Set Height 0.16");
+  SetHeight(body_pub, 0.16);
 
   // move to standby goal
   ROS_INFO("Moveto standby goal");
@@ -230,28 +267,46 @@ int main(int argc, char** argv) {
   ROS_INFO("Set arm to standby pose");
   SetArmPose(arm_group, arm_standby_pose);
 
+  ROS_INFO("Open Gripper");
+  std::vector<double> gripper_pose(3);
+  gripper_pose[0] = 0.02;
+  gripper_pose[1] = 0.02;
+  gripper_pose[2] = 0.02;
+  gripper_group.setJointValueTarget(gripper_pose);
+  gripper_group.move();
+
   ROS_INFO("Start service...");
   ros::ServiceServer pickup_service = nh.advertiseService("ros_sharp/PickGift", PickGiftCB);
-
 
   // moveit::planning_interface::MoveGroupInterface::Plan plan;
   geometry_msgs::PoseStamped target;
   get_new_target = -1;
-  std::vector<double> gripper_pose(3);
+  double r_height;
+  // std::vector<double> gripper_pose(3);
   while(ros::ok()) {
     if(get_new_target < 1 || get_new_target > 6) {
       ros::WallDuration(1.0).sleep();
       continue;
     }
 
-    ROS_INFO("Get new target 11");
+    ROS_INFO("Get new target %d", get_new_target);
 
     // move to pick pose
     // MoveToGoal(move_base_client, pick_pose);
 
+    if(get_new_target < 3) {
+      r_height = 0.34;
+    } else if(get_new_target < 5) {
+      r_height = 0.16;
+    } else {
+      r_height = 0.01;
+    }
+    ROS_INFO("Set height %lf", r_height);
+    SetHeight(body_pub, r_height);
+
     // set arm to target box watch pose
     SetArmPose(arm_group, arm_box_pose[get_new_target]);
-/*
+
     ROS_INFO("Update object");
     // UpdateObject(planning_scene_interface);
 
@@ -273,7 +328,7 @@ int main(int argc, char** argv) {
     ROS_INFO("Set arm to pick pose");
     target.header.stamp = ros::Time::now();
     target.header.frame_id = "object";
-    target.pose.position.y = 0.03;
+    target.pose.position.y = 0.02;
     target.pose.position.z = -0.03;
     arm_group.setPoseTarget(target);
     arm_group.move();
@@ -301,13 +356,19 @@ int main(int argc, char** argv) {
     // move to place pose
     // MoveToGoal(move_base_client, place_pose);
 
+    ROS_INFO("Set Height 0.16");
+    SetHeight(body_pub, 0.16);
+
+    ROS_INFO("Set arm to pre-place pose");
+    SetArmPose(arm_group, arm_standby_pose);
+
     ROS_INFO("Open Gripper");
     gripper_pose[0] = 0.02;
     gripper_pose[1] = 0.02;
     gripper_pose[2] = 0.02;
     gripper_group.setJointValueTarget(gripper_pose);
     gripper_group.move();
-*/
+
     // set arm to home pose
     ROS_INFO("Set arm to home pose");
     SetArmPose(arm_group, arm_standby_pose);
