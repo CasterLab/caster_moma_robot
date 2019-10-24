@@ -231,7 +231,7 @@ int main(int argc, char** argv) {
   SetArmPose(arm_group, arm_standby_pose);
 
   ROS_INFO("Start service...");
-  ros::ServiceServer pickup_service = nh.advertiseService("pick_gift", PickGiftCB);
+  ros::ServiceServer pickup_service = nh.advertiseService("ros_sharp/PickGift", PickGiftCB);
 
 
   // moveit::planning_interface::MoveGroupInterface::Plan plan;

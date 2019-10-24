@@ -11,16 +11,18 @@
     <arg name="log_type" value="$(arg log_type)"/>
   </include>
 
-  <!-- caster_body -->
-  <!-- <node pkg="caster_body_driver" type="caster_body_driver_node" name="caster_body_driver_node" output="$(arg log_type)">
-    <param name="baudrate" type="int" value="115200" />
-    <param name="port" type="string" value="/dev/ttyUSB0" />
-    <param name="joint_name" type="string" value="caster_body_connected_joint" />
-  </node> -->
+  <node name="pan_tilt_driver_node" pkg="pan_tilt_driver" type="PanTiltDriverNode" output="$(arg log_type)">
+    <param name="port_name" value="/dev/pan_tilt"/>
+    <param name="yaw_joint_name" value="pan_tilt_yaw_joint"/>
+    <param name="pitch_joint_name" value="pan_tilt_pitch_joint"/>
+    <!-- <remap from="/joint_states" to="/pan_tilt/joint_states"/> -->
+  </node>
 
-<!--   <rosparam command="load" file="$(find caster_body_driver)/config/ros_control.yaml" />
-  <node name="controller_spawner" pkg="controller_manager" type="spawner"
-        args="caster_body_joint_publisher caster_body_controller" output="$(arg log_type)" /> -->
+  <!-- kinect -->
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+    <arg name="reg_method" value="cpu" />
+    <arg name="publish_tf" value="true" />
+  </include>
 
   <!-- Kinova Jaco v2 -->
   <node name="j2s7s300_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2s7s300">
@@ -61,12 +63,7 @@
     <param name="corner_refinement"  value="LINES" />
   </node> -->
 
-    <!-- ros controller -->
-<!--   <rosparam command="load" file="$(find caster_man_bringup)/config/ros_control.yaml" />
-  <node name="controller_spawner" pkg="controller_manager" type="spawner"
-        args="caster_joint_publisher caster_velocity_controller" output="$(arg log_type)" /> -->
-
-<!--   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="$(arg log_type)">
-    <param name="publish_frequency" type="double" value="30" />
-  </node> -->
+  <!-- websocket server -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+  </include>
 </launch>
