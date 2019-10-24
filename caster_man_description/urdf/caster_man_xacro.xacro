@@ -4,7 +4,7 @@
 
   <!-- caster include -->
   <xacro:include filename = "$(find caster_description)/urdf/caster.urdf.xacro" />
-  <xacro:include filename = "$(find caster_body_description)/urdf/caster_body.urdf.xacro" />
+  <xacro:include filename = "$(find caster_description)/urdf/caster_body.urdf.xacro" />
 
   <!-- sensor include -->
   <xacro:include filename="$(find kinova_description)/urdf/j2s7s300.xacro" />
