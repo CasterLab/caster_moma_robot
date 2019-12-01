@@ -2,6 +2,16 @@
 <launch>
   <arg name="log_type" default="screen"/>
 
+  <!-- Aruco detect -->
+  <node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher">
+    <param name="image_is_rectified" value="True"/>
+    <param name="marker_size"        value="0.063"/>
+    <param name="reference_frame"    value="camera_color_optical_frame"/>
+    <param name="camera_frame"       value="camera_color_optical_frame"/>
+    <remap from="/camera_info" to="/color/camera_info" />
+    <remap from="/image" to="/color/image_raw" />
+  </node>
+
   <!-- marker detect -->
   <node pkg="caster_man_app" type="marker_detect_node" name="marker_detect_node" output="$(arg log_type)" />
 

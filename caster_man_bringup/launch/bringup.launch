@@ -4,7 +4,6 @@
 
   <!-- Robot description -->
   <param name="robot_description" command="$(find xacro)/xacro $(find caster_man_description)/urdf/caster_man_xacro.xacro" />
-  <!-- <param name="caster/robot_description" command="$(find xacro)/xacro $(find caster_man_description)/urdf/caster_man_xacro.xacro" /> -->
 
   <!-- caster -->
   <include file="$(find caster_base)/launch/base.launch">
@@ -15,7 +14,6 @@
     <param name="port_name" value="/dev/pan_tilt"/>
     <param name="yaw_joint_name" value="pan_tilt_yaw_joint"/>
     <param name="pitch_joint_name" value="pan_tilt_pitch_joint"/>
-    <!-- <remap from="/joint_states" to="/pan_tilt/joint_states"/> -->
   </node>
 
   <!-- kinect -->
@@ -25,11 +23,11 @@
   </include>
 
   <!-- Kinova Jaco v2 -->
-  <node name="j2s7s300_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2s7s300">
+  <node name="j2s6s200_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2s6s200">
     <rosparam file="$(find caster_man_bringup)/config/kinova_arm.yaml" command="load" />
-    <param name="robot_name" value="j2s7s300" />   
-    <param name="robot_type" value="j2s7s300" />
-    <remap from="j2s7s300_driver/out/joint_state" to="joint_states"/>
+    <param name="robot_name" value="j2s6s200" />   
+    <param name="robot_type" value="j2s6s200" />
+    <remap from="j2s6s200_driver/out/joint_state" to="joint_states"/>
   </node>
 
   <!-- Realsense -->
@@ -38,32 +36,5 @@
     <arg name="initial_reset"         value="false"/>
     <arg name="enable_sync"           value="true"/>
     <arg name="align_depth"           value="true"/>
-  </include>
-
-  <!-- Aruco detect -->
-  <node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher">
-    <param name="image_is_rectified" value="True"/>
-    <param name="marker_size"        value="0.063"/>
-    <param name="reference_frame"    value="camera_color_optical_frame"/>
-    <param name="camera_frame"       value="camera_color_optical_frame"/>
-    <remap from="/camera_info" to="/color/camera_info" />
-    <remap from="/image" to="/color/image_raw" />
-  </node>
-
-  <!-- Aruco detect (Single marker)-->
-<!--   <node pkg="aruco_ros" type="single" name="aruco_single" output="$(arg log_type)">
-    <remap from="/camera_info" to="/color/camera_info" />
-    <remap from="/image" to="/color/image_raw" />
-    <param name="image_is_rectified" value="True"/>
-    <param name="marker_size"        value="0.063"/>
-    <param name="marker_id"          value="88"/>
-    <param name="reference_frame"    value=""/>
-    <param name="camera_frame"       value="camera_color_optical_frame"/>
-    <param name="marker_frame"       value="aruco_marker_frame" />
-    <param name="corner_refinement"  value="LINES" />
-  </node> -->
-
-  <!-- websocket server -->
-  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
   </include>
 </launch>
