@@ -10,11 +10,11 @@
     <arg name="log_type" value="$(arg log_type)"/>
   </include>
 
-  <node name="pan_tilt_driver_node" pkg="pan_tilt_driver" type="PanTiltDriverNode" output="$(arg log_type)">
-    <param name="port_name" value="/dev/pan_tilt"/>
-    <param name="yaw_joint_name" value="pan_tilt_yaw_joint"/>
-    <param name="pitch_joint_name" value="pan_tilt_pitch_joint"/>
-  </node>
+  <!-- pan tilt driver -->
+  <include file="$(find pan_tilt_bringup)/launch/bringup.launch">
+    <arg name="log_type" value="$(arg log_type)"/>
+    <arg name="port_name" value="/dev/pan_tilt"/>
+  </include>
 
   <!-- kinect -->
   <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">

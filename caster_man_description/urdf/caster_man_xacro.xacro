@@ -9,7 +9,8 @@
   <!-- sensor include -->
   <xacro:include filename="$(find kinova_description)/urdf/j2s6s200.xacro" />
   <xacro:include filename="$(find pan_tilt_description)/urdf/pan_tilt.urdf.xacro" />
-  <xacro:include filename="$(find caster_man_description)/urdf/kinect_v2.urdf.xacro" />
+  <xacro:include filename="$(find pan_tilt_description)/urdf/kinect_v2.urdf.xacro" />
+  <xacro:include filename="$(find pan_tilt_description)/urdf/pan_tilt_neck_50mm.urdf.xacro" />
 
   <!-- caster and caster_body -->
   <caster_robot/>
@@ -52,8 +53,11 @@
   </sensor_d435>
 
   <!-- pan tilt -->
-  <xacro:pan_tilt parent="caster_body_head_link" >
-    <origin xyz="0 0 0.05" rpy="0 0 0" />
+  <xacro:pan_tilt_neck_50mm parent="caster_body_head_link" >
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:pan_tilt_neck_50mm>
+  <xacro:pan_tilt parent="pan_tilt_neck_top" >
+    <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:pan_tilt>
 
   <!-- kinect -->
