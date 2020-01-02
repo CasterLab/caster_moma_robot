@@ -23,18 +23,18 @@
   </include>
 
   <!-- Kinova Jaco v2 -->
-<!--   <node name="j2s6s200_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2s6s200">
+  <node name="j2s6s200_driver" pkg="kinova_driver" type="kinova_arm_driver" output="$(arg log_type)" cwd="node" args="j2s6s200">
     <rosparam file="$(find caster_man_bringup)/config/kinova_arm.yaml" command="load" />
     <param name="robot_name" value="j2s6s200" />   
     <param name="robot_type" value="j2s6s200" />
     <remap from="j2s6s200_driver/out/joint_state" to="joint_states"/>
-  </node> -->
+  </node>
 
   <!-- Realsense -->
-<!--   <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+  <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
     <arg name="tf_prefix"             value="camera"/>
     <arg name="initial_reset"         value="false"/>
     <arg name="enable_sync"           value="true"/>
     <arg name="align_depth"           value="true"/>
-  </include> -->
+  </include>
 </launch>

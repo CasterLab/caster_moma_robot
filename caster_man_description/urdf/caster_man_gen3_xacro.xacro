@@ -1,0 +1,55 @@
+<?xml version = "1.0"?>
+<robot name = "caster_kinova_xacro" xmlns:xacro = "http://www.ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <!-- caster include -->
+  <xacro:include filename = "$(find caster_description)/urdf/caster.urdf.xacro" />
+  <xacro:include filename = "$(find caster_description)/urdf/caster_body_v2.urdf.xacro" />
+
+  <!-- kinova 6dof arm -->
+  <xacro:include filename="$(find kortex_description)/arms/gen3/7dof/urdf/gen3_macro.xacro" />
+  <xacro:include filename="$(find kortex_description)/grippers/robotiq_2f_85/urdf/robotiq_2f_85_macro.xacro" />
+  
+  <!-- sensors -->
+  <xacro:include filename="$(find pan_tilt_description)/urdf/pan_tilt.urdf.xacro" />
+  <xacro:include filename="$(find pan_tilt_description)/urdf/kinect_v2.urdf.xacro" />
+
+  <!-- caster and caster_body -->
+  <caster_robot/>
+  <xacro:caster_body parent="base_link">
+    <origin xyz="0.072 0.0 0.2815" rpy="0 0 0" />
+  </xacro:caster_body>
+
+  <!-- arm mount joint -->
+  <joint name="arm_mount_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="${M_PI/2} ${M_PI/2} 0" />
+    <parent link="caster_body_arm_link"/>
+    <child link="kortex_base_link"/>
+  </joint>
+
+  <!-- gen3 arm -->
+  <xacro:load_arm parent="" dof="7" vision="true">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:load_arm>
+
+  <!-- camera mount joint, reference: Document UG-014(kinova gen3 user guide) page 142 -->
+  <link name="camera_link" />
+  <joint name="arm_camera_mount_joint" type="fixed">
+    <origin xyz="0 0.05639 -0.0035" rpy="0 0 ${M_PI}" />
+    <parent link="end_effector_link"/>
+    <child link="camera_link"/>
+  </joint>
+
+  <!-- gripper -->
+  <xacro:load_gripper parent="end_effector_link"/>
+
+  <!-- pan tilt -->
+  <xacro:pan_tilt parent="caster_body_head_link" >
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:pan_tilt>
+
+  <!-- kinect -->
+  <xacro:kinect_v2 parent="pan_tilt_kinect_surface" >
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:kinect_v2>
+</robot>
