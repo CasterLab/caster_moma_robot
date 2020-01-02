@@ -6,7 +6,7 @@
   <xacro:include filename = "$(find caster_description)/urdf/caster.urdf.xacro" />
   <xacro:include filename = "$(find caster_description)/urdf/caster_body_v2.urdf.xacro" />
 
-  <!-- kinova 6dof arm -->
+  <!-- kinova gen3 arm -->
   <xacro:include filename="$(find kortex_description)/arms/gen3/7dof/urdf/gen3_macro.xacro" />
   <xacro:include filename="$(find kortex_description)/grippers/robotiq_2f_85/urdf/robotiq_2f_85_macro.xacro" />
   
@@ -17,7 +17,7 @@
   <!-- caster and caster_body -->
   <caster_robot/>
   <xacro:caster_body parent="base_link">
-    <origin xyz="0.072 0.0 0.2815" rpy="0 0 0" />
+    <origin xyz="0.0 0.0 0.2745" rpy="0 0 0" />
   </xacro:caster_body>
 
   <!-- arm mount joint -->
