@@ -2,18 +2,27 @@
 <launch>
   <arg name="log_type" default="screen"/>
 
+  <arg name="teleop" value="true" />
+
   <!-- Robot description -->
   <param name="robot_description" command="$(find xacro)/xacro $(find caster_man_description)/urdf/caster_man_gen3_xacro.xacro" />
 
-  <!-- caster -->
-  <include file="$(find caster_base)/launch/base.launch">
+  <!-- Robot base -->
+  <include file="$(find caster_base)/launch/include/base_v2.launch.xml">
     <arg name="log_type" value="$(arg log_type)"/>
+    <arg name="base_version" value="v2" />
+    <arg name="has_body" value="true" />
+    <arg name="body_version" value="v1" />
   </include>
+
+  <group if="$(arg teleop)">
+    <include file="$(find caster_base)/launch/include/teleop.launch.xml" />
+  </group>
 
   <!-- pan tilt driver -->
   <include file="$(find pan_tilt_bringup)/launch/bringup.launch">
     <arg name="log_type" value="$(arg log_type)"/>
-    <arg name="port_name" value="/dev/serial/by-path/pci-0000:00:14.0-usb-0:1.1:1.0-port0"/>
+    <arg name="port_name" value="/dev/caster_head"/>
   </include>
 
   <!-- kinect -->
@@ -37,8 +46,11 @@
       <param name="arm" value="gen3" />
       <param name="gripper" value="robotiq_2f_85" />
       <param name="dof" value="7" />
+      <param name="prefix" value="arm_" />
+      <param name="use_hard_limits" value="false" />
       <rosparam command="load" file="$(find kortex_description)/arms/gen3/7dof/config/joint_limits.yaml" />
       <rosparam command="load" file="$(find kortex_description)/grippers/robotiq_2f_85/config/joint_limits.yaml" />
+      <remap from="base_feedback/joint_state" to="joint_states" />
   </node>
 
   <!-- Gen3 camera -->
@@ -46,9 +58,9 @@
     <arg name="device" value="192.168.33.9" />
   </include>
 
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+<!--   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="rate" value="100" />
     <rosparam param="source_list">[base_feedback/joint_state]</rosparam>
     <param name="use_gui" value="false"/>
-  </node>
+  </node> -->
 </launch>
