@@ -56,6 +56,7 @@
   <!-- Gen3 camera -->
   <include file="$(find kinova_vision)/launch/kinova_vision_rgbd.launch">
     <arg name="device" value="192.168.33.9" />
+    <arm name="depth_registration" value="true" />
   </include>
 
 <!--   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
