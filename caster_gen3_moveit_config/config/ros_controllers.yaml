@@ -41,13 +41,9 @@ controller_list:
       - arm_joint_5
       - arm_joint_6
       - arm_joint_7
-robotiq_2f_85_gripper_controller:
-  type: GripperCommand
-  joints:
-    arm_finger_joint
-  gains:
-    arm_finger_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
+  - name: "robotiq_2f_85_gripper_controller"
+    action_ns: gripper_cmd
+    default: True
+    type: GripperCommand
+    joints:
+      - arm_finger_joint
