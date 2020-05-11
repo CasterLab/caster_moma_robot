@@ -13,4 +13,6 @@
     <rosparam command="load" file="$(find caster_gen3_moveit_config)/config/kinematics.yaml"/>
   </node>
 
+  <node name="rqt_runtime_monitor" pkg="rqt_runtime_monitor" type="rqt_runtime_monitor" />
+
 </launch>
