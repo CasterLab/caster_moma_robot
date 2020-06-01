@@ -1,2 +1,2 @@
-# caster_man_ros
+# caster_moma_ros
 ROS package for caster+kinova

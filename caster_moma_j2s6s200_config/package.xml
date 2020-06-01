@@ -1,6 +1,6 @@
 <package>
 
-  <name>caster_gen3_moveit_config</name>
+  <name>caster_moma_j2s6s200_config</name>
   <version>0.3.0</version>
   <description>
      An automatically generated package with all the configuration and launch files for using the caster_kinova_xacro with the MoveIt! Motion Planning Framework

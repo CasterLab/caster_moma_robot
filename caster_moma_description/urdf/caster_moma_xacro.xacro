@@ -1,0 +1,67 @@
+<?xml version = "1.0"?>
+<robot name = "caster_kinova_xacro" xmlns:xacro = "http://www.ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <!-- caster include -->
+  <xacro:include filename = "$(find caster_description)/urdf/caster.urdf.xacro" />
+  <xacro:include filename = "$(find caster_description)/urdf/caster_body.urdf.xacro" />
+
+  <!-- sensor include -->
+  <xacro:include filename="$(find kinova_description)/urdf/j2s6s200.xacro" />
+  <xacro:include filename="$(find pan_tilt_description)/urdf/pan_tilt.urdf.xacro" />
+  <xacro:include filename="$(find pan_tilt_description)/urdf/kinect_v2.urdf.xacro" />
+  <xacro:include filename="$(find pan_tilt_description)/urdf/pan_tilt_neck_50mm.urdf.xacro" />
+
+  <!-- caster and caster_body -->
+  <caster_robot/>
+  <xacro:caster_body parent="base_link">
+    <origin xyz="0.072 0.0 0.2815" rpy="0 0 0" />
+  </xacro:caster_body>
+
+   <!-- realsense d435 -->
+  <xacro:include filename="$(find caster_moma_description)/urdf/realsense_d435.urdf.xacro" />
+
+  <!-- kinova 6dof arm -->
+  <link name="arm_mount_link" />
+  <joint name="arm_mount_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
+    <parent link="caster_body_arm_link"/>
+    <child link="arm_mount_link"/>
+  </joint>
+  <xacro:j2s6s200 base_parent="arm_mount_link"/> 
+
+  <!-- realsense -->
+  <link name="realsense_coupling_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://caster_moma_description/mesh/kinova_realsense_coupling.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.20 0.20 0.20 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="realsense_coupling_joint" type="fixed">
+    <origin xyz="0 0 0.007" rpy="0 0 0" />
+    <parent link="j2s6s200_link_6"/>
+    <child link="realsense_coupling_link"/>
+  </joint>
+
+  <sensor_d435 parent="realsense_coupling_link" prefix="camera">
+    <origin xyz="0.0875 0 -0.01515" rpy="0 ${M_PI/2} 0"/>
+  </sensor_d435>
+
+  <!-- pan tilt -->
+  <xacro:pan_tilt_neck_50mm parent="caster_body_head_link" >
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:pan_tilt_neck_50mm>
+  <xacro:pan_tilt parent="pan_tilt_neck_top" >
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:pan_tilt>
+
+  <!-- kinect -->
+  <xacro:kinect_v2 parent="pan_tilt_kinect_surface" >
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:kinect_v2>
+</robot>
