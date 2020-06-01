@@ -5,6 +5,6 @@
 
   <arg name="pipeline" default="ompl" />
 
-  <include file="$(find caster_gen3_moveit_config)/launch/$(arg pipeline)_planning_pipeline.launch.xml" />
+  <include file="$(find caster_moma_gen3_7d_2f85_moveit_config)/launch/$(arg pipeline)_planning_pipeline.launch.xml" />
 
 </launch>

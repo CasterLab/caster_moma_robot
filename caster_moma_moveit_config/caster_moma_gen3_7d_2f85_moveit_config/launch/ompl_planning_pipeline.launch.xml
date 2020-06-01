@@ -21,6 +21,6 @@
   <!-- PreComputedJointTrajectory Action Server needs 1msec timesteps between waypoints  -->
   <param name="sample_duration" value="0.001"/>
 
-  <rosparam command="load" file="$(find caster_gen3_moveit_config)/config/ompl_planning.yaml"/>
+  <rosparam command="load" file="$(find caster_moma_gen3_7d_2f85_moveit_config)/config/ompl_planning.yaml"/>
 
 </launch>

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(caster_gen3_moveit_config)
+project(caster_moma_gen3_7d_2f85_moveit_config)
 
 find_package(catkin REQUIRED)
 
