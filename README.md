@@ -1,2 +1,2 @@
 # caster_moma_ros
-ROS package for caster+kinova
+ROS package for Caster MOMA robot
