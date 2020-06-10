@@ -21,7 +21,6 @@
 
   <!-- <arg name="capabilities" default=""/> -->
   <arg name="disable_capabilities" default=""/>
-  
   <!-- load these non-default MoveGroup capabilities (space seperated) -->
   <arg name="capabilities" value="
               move_group/MoveGroupCartesianPathService

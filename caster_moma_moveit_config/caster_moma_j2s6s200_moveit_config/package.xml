@@ -10,9 +10,9 @@
 
   <license>BSD</license>
 
-  <url type="website">https://github.com/CasterLab/caster_moma_robot</url>
-  <url type="bugtracker">https://github.com/CasterLab/caster_moma_robot/issues</url>
-  <url type="repository">https://github.com/CasterLab/caster_moma_robot</url>
+  <url type="website">http://moveit.ros.org/</url>
+  <url type="bugtracker">https://github.com/ros-planning/moveit/issues</url>
+  <url type="repository">https://github.com/ros-planning/moveit</url>
 
   <buildtool_depend>catkin</buildtool_depend>
 
