@@ -43,8 +43,8 @@ controller_list:
       - j2s6s200_joint_5
       - j2s6s200_joint_6
   - name: j2s6s200_gripper
-    action_ns: gripper_command
     default: True
+    action_ns: gripper_command
     type: GripperCommand
     joints:
       - j2s6s200_joint_finger_1

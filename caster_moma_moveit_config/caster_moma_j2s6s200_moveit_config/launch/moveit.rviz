@@ -5,7 +5,8 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /MotionPlanning1
-        - /MotionPlanning1/Planned Path1
+        - /MotionPlanning1/Scene Geometry1
+        - /MotionPlanning1/Scene Robot1
       Splitter Ratio: 0.7425600290298462
     Tree Height: 361
   - Class: rviz/Help
@@ -40,6 +41,38 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 0.10000000149011612
+      Name: ee_link
+      Radius: 0.009999999776482582
+      Reference Frame: j2s6s200_end_effector
+      Value: true
+    - Class: moveit_rviz_plugin/PlanningScene
+      Enabled: false
+      Move Group Namespace: ""
+      Name: PlanningScene
+      Planning Scene Topic: move_group/monitored_planning_scene
+      Robot Description: robot_description
+      Scene Geometry:
+        Scene Alpha: 0.8999999761581421
+        Scene Color: 50; 230; 50
+        Scene Display Time: 0.20000000298023224
+        Show Scene Geometry: true
+        Voxel Coloring: Z-Axis
+        Voxel Rendering: Occupied Voxels
+      Scene Robot:
+        Attached Body Color: 150; 50; 150
+        Links:
+          All Links Enabled: true
+          Expand Joint Details: false
+          Expand Link Details: false
+          Expand Tree: false
+          Link Tree Style: Links in Alphabetic Order
+        Robot Alpha: 1
+        Show Robot Collision: false
+        Show Robot Visual: true
+      Value: false
     - Acceleration_Scaling_Factor: 1
       Class: moveit_rviz_plugin/MotionPlanning
       Enabled: true
@@ -352,7 +385,7 @@ Visualization Manager:
       Robot Description: robot_description
       Scene Geometry:
         Scene Alpha: 1
-        Scene Color: 50; 230; 50
+        Scene Color: 78; 154; 6
         Scene Display Time: 0.20000000298023224
         Show Scene Geometry: true
         Voxel Coloring: Z-Axis
@@ -632,25 +665,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 3.546933650970459
+      Distance: 3.299628496170044
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.11356700211763382
-        Y: 0.10592000186443329
-        Z: 2.2351800055275817e-7
+        X: 0.7414135932922363
+        Y: 0.018434882164001465
+        Z: 5.811458549942472e-7
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.20479708909988403
+      Pitch: 0.46979713439941406
       Target Frame: base_footprint
       Value: XYOrbit (rviz)
-      Yaw: 5.624945163726807
+      Yaw: 4.199934959411621
     Saved: ~
 Window Geometry:
   Displays:
