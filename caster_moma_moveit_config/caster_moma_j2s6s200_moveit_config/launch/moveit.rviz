@@ -72,252 +72,6 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          arm_mount_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          base_footprint:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          base_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          camera_bottom_screw_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_color_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_color_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_depth_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_depth_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_left_ir_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_left_ir_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          camera_right_ir_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_right_ir_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          caster_body_arm_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          caster_body_head_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          caster_body_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          caster_body_part_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          drive_wheel_left_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          drive_wheel_right_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          imu_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          j2s6s200_end_effector:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          j2s6s200_link_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_2:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_3:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_4:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_5:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_6:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_base:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_finger_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_finger_2:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_finger_tip_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          j2s6s200_link_finger_tip_2:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          kinect2_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          kinect_v2_base:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          laser_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          laser_link2:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          pan_tilt_base_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          pan_tilt_kinect_surface:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          pan_tilt_pitch_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          pan_tilt_yaw_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          realsense_coupling_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          support_wheel_front_left_body_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          support_wheel_front_left_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          support_wheel_front_right_body_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          support_wheel_front_right_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          support_wheel_rear_left_body_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          support_wheel_rear_left_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          support_wheel_rear_right_body_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          support_wheel_rear_right_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          ultrasonic_front_left_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          ultrasonic_front_right_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          ultrasonic_rear_left_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          ultrasonic_rear_right_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
         Robot Alpha: 1
         Show Robot Collision: false
         Show Robot Visual: true
@@ -624,8 +378,8 @@ Visualization Manager:
         Goal State Color: 250; 128; 0
         Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255
-        Planning Group: gripper
-        Query Goal State: false
+        Planning Group: arm
+        Query Goal State: true
         Query Start State: false
         Show Workspace: false
         Start State Alpha: 1
@@ -971,7 +725,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 2.0631678104400635
+      Distance: 3.1536102294921875
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -986,10 +740,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6452028751373291
+      Pitch: 0.3102028965950012
       Target Frame: base_footprint
       Value: XYOrbit (rviz)
-      Yaw: 3.2499325275421143
+      Yaw: 4.864933013916016
     Saved: ~
 Window Geometry:
   Displays:
@@ -1005,7 +759,7 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd000000010000000000000295000003a7fc0200000008fb000000100044006900730070006c006100790073010000003d0000013b000000c900fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a400fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000017e000002660000019b00fffffffb0000000a0049006d00610067006500000002c80000011c0000001600ffffff000004a2000003a700000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd000000010000000000000295000003a7fc0200000008fb000000100044006900730070006c006100790073010000003d0000013b000000c900fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a400fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000017e00000266000001a600fffffffb0000000a0049006d00610067006500000002c80000011c0000001600ffffff000004a2000003a700000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
   Width: 1853
