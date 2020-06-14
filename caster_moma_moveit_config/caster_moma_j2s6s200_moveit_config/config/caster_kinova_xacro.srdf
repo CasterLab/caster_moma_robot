@@ -45,6 +45,14 @@
         <joint name="j2s6s200_joint_6" value="-1.570" />
     </group_state>
     <group_state name="ready" group="arm">
+        <joint name="j2s6s200_joint_1" value="4.76969860914654" />
+        <joint name="j2s6s200_joint_2" value="1.521357803792829" />
+        <joint name="j2s6s200_joint_3" value="5.5643826826328775" />
+        <joint name="j2s6s200_joint_4" value="4.936348577519339" />
+        <joint name="j2s6s200_joint_5" value="4.8519753731278845" />
+        <joint name="j2s6s200_joint_6" value="0.5568294333641985" />
+    </group_state>
+    <group_state name="ready1" group="arm">
         <joint name="j2s6s200_joint_1" value="1.57" />
         <joint name="j2s6s200_joint_2" value="4.7446" />
         <joint name="j2s6s200_joint_3" value="0.9526" />

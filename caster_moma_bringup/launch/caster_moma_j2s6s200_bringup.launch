@@ -26,7 +26,13 @@
   </include>
 
   <!-- kinect -->
-  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+<!--   <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+    <arg name="depth_method" value="opengl" />
+    <arg name="reg_method" value="cpu" />
+    <arg name="publish_tf" value="true" />
+  </include> -->
+
+  <include file="$(find caster_moma_bringup)/launch/include/kinect2_bridge.launch.xml">
     <arg name="depth_method" value="opengl" />
     <arg name="reg_method" value="cpu" />
     <arg name="publish_tf" value="true" />
