@@ -5,7 +5,7 @@
   <arg name="teleop" value="true" />
 
   <!-- Robot description -->
-  <param name="robot_description" command="$(find xacro)/xacro $(find caster_moma_description)/urdf/caster_moma_j2s6s200_xacro.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro $(find caster_moma_description)/urdf/caster_moma_j2n6s200_xacro.xacro" />
 
   <!-- Robot base -->
   <include file="$(find caster_base)/launch/include/base.launch.xml">
